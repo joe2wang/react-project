@@ -1,19 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
+import './index.scss'
+import { Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { Router, Route } from 'react-router'
-import { createBrowserHistory } from 'history'
-import { routes } from './router'
+
+import App from './App'
 import store from './store'
-// routes={routes}
+import { createBrowserHistory } from 'history'
+
 import * as serviceWorker from './serviceWorker'
 const browser = createBrowserHistory()
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browser}>
-      <Route path='/' component={App} />
+      <App />
     </Router>
   </Provider>,
 

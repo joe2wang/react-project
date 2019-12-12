@@ -1,23 +1,32 @@
-import IndexComp from '../App'
+import { Redirect } from 'react-router-dom'
+import Home from '../pages/home/index'
+import List from '../pages/list/index'
+import ListDetail from '../pages/list/detail'
 
-
+/**
+ * 路由配置参考API：https://reacttraining.com/react-router/web/example/route-config
+ */
 export const routes = [
-    { path: '/',
-      component: IndexComp,
-      indexRoute: { component:IndexComp },
-      childRoutes: [
-        { path: 'about', component:IndexComp }
-        // { path: 'inbox',
-        //   component: App,
-        //   childRoutes: [
-        //     { path: '/messages/:id', component: App },
-        //     { path: 'messages/:id',
-        //       onEnter: function (nextState, replaceState) {
-        //         replaceState(null, '/messages/' + nextState.params.id)
-        //       }
-        //     }
-        //   ]
-        // }
-      ]
-    }
-  ]
+  { path: '/home', component: Home },
+  {
+    path: '/list',
+    component: List,
+    exact: true,
+    childRoute: [
+      {
+        path: '/list/:id',
+        component: ListDetail
+      }
+    ]
+  }
+]
+export const menuList = [
+  {
+    title: '首页',
+    path: '/home'
+  },
+  {
+    title: '列表',
+    path: '/list'
+  }
+]
