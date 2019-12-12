@@ -1,11 +1,16 @@
 
+
+import {LIST_REDUCER} from '../constant/reducer/namespace'
 const SHOW_ALL={
-    count:1
+  listResult:[]
 }
  export default function visibilityFilter(state = SHOW_ALL, action) {
     switch (action.type) {
-      case 'SET_VISIBILITY_FILTER':
-        return action.filter
+      case LIST_REDUCER:
+        return {
+          ...state,
+          listResult:action.payload.list
+        }
       default:
         return state
     }
