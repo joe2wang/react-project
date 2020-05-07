@@ -1,40 +1,23 @@
 import React from 'react'
 
-
 import './App.scss'
-import { Layout, Menu, Breadcrumb } from 'antd'
+import { Layout, Menu } from 'antd' //Breadcrumb
 
 import { routes, menuList } from './router'
-import {
-  Route,
-  Redirect,
-  Switch,
-  withRouter
-} from 'react-router-dom'
+import { Route, Redirect, Switch, withRouter } from 'react-router-dom'
 
-function RouteWithSubRoutes (route) {
-  const { childRoute, ...rest } = route
-  if (childRoute) {
-    RouteWithSubRoutes(childRoute)
-  }
-  return (
-    <Route
-      {...rest}
-      render={props => (
-        // pass the sub-routes down to keep nesting
-        <route.component {...props} {...rest} routes={childRoute} />
-      )}
-    />
-  )
-}
 const { Header, Content, Footer } = Layout
 function IndexComp (props) {
   const { location, history } = props
   function navigateTo (pathname) {
-   
     history.push({ pathname })
   }
-  console.log(props,99)
+  function RouteWithSubRoutes (routes) {
+    return routes.map((route, i) => {
+      return <Route key={i} {...route} />
+    })
+  }
+  console.log(RouteWithSubRoutes(routes))
   return (
     <div className='App'>
       <Layout className='layout'>
@@ -58,27 +41,23 @@ function IndexComp (props) {
             })}
           </Menu>
         </Header>
-        <Content  className="wrapper">
-        {/* 面包屑需写独立组件，暂不做 */}
+        <Content className='wrapper'>
+          {/* 面包屑需写独立组件，暂不做 */}
           {/* <Breadcrumb className="bread-box">
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>List</Breadcrumb.Item>
           </Breadcrumb> */}
-          <div  className="content">
+          <div className='content'>
             <Switch>
               <Route exact path='/'>
                 <Redirect to='/home' />
               </Route>
 
-              {routes.map((route, i) => (
-                <RouteWithSubRoutes key={i} {...route} />
-              ))}
+              {RouteWithSubRoutes(routes)}
             </Switch>
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
-         
-        </Footer>
+        <Footer style={{ textAlign: 'center' }} />
       </Layout>
     </div>
   )

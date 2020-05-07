@@ -1,7 +1,7 @@
 import Mock from 'mockjs'
-import {HOST_NAME} from '../api'
+//import {HOST_NAME} from '../api'
 
-Mock.mock(`${HOST_NAME}/get/list`,'get',{
+Mock.mock(`/get/list`,'get',{
     'list|1-30': [{
         'key|+1': 1,
         'name|+1':'@name',

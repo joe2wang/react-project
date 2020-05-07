@@ -11,13 +11,11 @@ export const routes = [
   {
     path: '/list',
     component: List,
-    exact: true,
-    childRoute: [
-      {
-        path: '/list/:id',
-        component: ListDetail
-      }
-    ]
+    exact: true
+  },
+  {
+    path: '/list/:id',
+    component: ListDetail
   }
 ]
 export const menuList = [

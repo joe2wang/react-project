@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-// import { useParams } from 'react-router-dom'
+ import { useParams } from 'react-router-dom'
 
-class ListDetail extends Component {
-  render () {
-    // let params = useParams()
-    // console.log(this.props, params)
-    return <div>详情</div>
-  }
+function ListDetail (){
+  let {id,...res} = useParams()
+  console.log(id,res, 'detail,666')
+  return <div>详情</div>
 }
-
 ListDetail.propTypes = {}
 
 export default ListDetail
